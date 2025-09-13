@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electiva 2 - Anddy Josue Jara Ramirez</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 30px;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 35px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .info-item {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #6c757d;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: transform 0.2s ease;
+        }
+        
+        .info-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .info-item strong {
+            color: #495057;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        h2 {
+            color: #343a40;
+            margin: 35px 0 20px 0;
+            font-size: 1.6rem;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 60%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .objective-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .objective-card::after {
+            content: '🎯';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+        
+        .project-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .btn-link {
+            display: block;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            color: #495057;
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+        
+        .btn-link:hover::before {
+            left: 100%;
+        }
+        
+        .btn-link strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #667eea;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(145deg, #6c757d, #495057);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        
+        .tech-tag:hover {
+            transform: scale(1.05);
+        }
+        
+        .steps-container {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        
+        .step:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-number {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #343a40, #495057);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 0;
+        }
+        
+        .footer p {
+            margin: 8px 0;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Electiva 2 (Virtual)</h1>
+            <p>2025-C-3 | DevOps Tools and Technologies</p>
+        </div>
+        
+        <div class="content">
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>👤 Estudiante</strong>
+                    Anddy Josue Jara Ramirez
+                </div>
+                <div class="info-item">
+                    <strong>🎓 Matrícula</strong>
+                    2024-0148
+                </div>
+                <div class="info-item">
+                    <strong>👨‍🏫 Profesor</strong>
+                    Elvys Cruz
+                </div>
+                <div class="info-item">
+                    <strong>📚 Curso</strong>
+                    2025-C-3-2526-3146-TDS-016
+                </div>
+                <div class="info-item">
+                    <strong>⚡ Actividad</strong>
+                    S3: Herramientas y Tecnologias de DevOps
+                </div>
+            </div>
+            
+            <h2>Crear página web usando GitHub.io</h2>
+            
+            <div class="objective-card">
+                <strong>Objetivo:</strong> Crear un repositorio conteniendo una página web y utilizar GitHub.io para automatizar la creación de la página con el contenido del repositorio.
+            </div>
+            
+            <h2>Información del Proyecto</h2>
+            <div class="project-buttons">
+                <a href="https://github.com/andj05/Practica-1-Electiva_1.git" class="btn-link" target="_blank">
+                    <strong>📂 Repositorio GitHub</strong>
+                    https://github.com/andj05/Practica-1-Electiva_1.git
+                </a>
+                <a href="#" class="btn-link" target="_blank">
+                    <strong>🌐 GitHub Pages URL</strong>
+                    tu-usuario.github.io/Electiva2/
+                </a>
+            </div>
+            
+            <h2>Tecnologías Utilizadas</h2>
+            <div class="tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">GitHub Pages</span>
+                <span class="tech-tag">Git</span>
+            </div>
+            
+            <h2>Proceso de Desarrollo</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">
+                        <strong>Crear repositorio</strong><br>
+                        Nuevo repositorio en GitHub llamado "Electiva2"
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">
+                        <strong>Subir archivos</strong><br>
+                        Crear y subir archivo index.html
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">
+                        <strong>Activar GitHub Pages</strong><br>
+                        Settings → Pages → Deploy from branch
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">
+                        <strong>Despliegue automático</strong><br>
+                        Página disponible en GitHub.io
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Desarrollado para la materia Electiva 2 - DevOps Tools and Technologies</p>
+            <p>&copy; 2025 Anddy Josue Jara Ramirez</p>
+        </div>
+    </div>
+</body>
+</html>
